@@ -1,18 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState, useEffect } from "react";
+import Meme from './components/Meme';
 
 function App() {
 
-  const [state, setstate] = useState([]);
+  const [templates, setTemplates] = useState([]);
+  const [template, setTemplate] = useState(null);
 
   useEffect(() => {
-   fetc("https://api.imgflip.com/get_memes").then(x => x.json().then(response => ))
+   fetch("https://api.imgflip.com/get_memes").then(x => x.json().then(response => setTemplates(response.data.memes) ))
   }, [])
 
   return (
     <div className="App">
-
+    {template && <Meme template={template} />}
+      {!template && templates.map(template => {
+          return (
+            <Meme template={template} onClick={() => {
+              setTemplate(template)
+            } } />
+          )
+        })
+      }
     </div>
   );
 }
