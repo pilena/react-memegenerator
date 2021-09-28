@@ -14,15 +14,30 @@ function App() {
 
   return (
     <div className="App">
-    {template && <Meme template={template} />}
-      {!template && templates.map(template => {
+    {template && (
+      <form onSubmit ={ e => {
+        e.preventDefault();
+        // add logic to create meme from api
+      }}>
+          <Meme template={template} />
+          <input placeholder="top text" />
+          <input placeholder="bottom text" />
+          <button type="submit"> Create Meme </button>
+      </form>
+      )}
+      {!template && (
+        <>
+        <h1>Pick a template</h1>
+        {templates.map(template => {
           return (
             <Meme template={template} onClick={() => {
               setTemplate(template)
-            } } />
+            } } 
+            />
           )
-        })
-      }
+        })}
+        </>
+       ) }
     </div>
   );
 }
