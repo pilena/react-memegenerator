@@ -50,6 +50,7 @@ function App() {
         setMeme(json.data.url)
       }}>
           <Meme template={template} />
+          <div className="meme-form" >
           <input placeholder="top text" 
             value={topText} 
             onChange={e => setTopText(e.target.value)} />
@@ -58,6 +59,7 @@ function App() {
             onChange={e => setBottomText(e.target.value)} />
 
           <button type="submit"> Create Meme </button>
+          </div>
       </form>
       )}
       {!template && (
